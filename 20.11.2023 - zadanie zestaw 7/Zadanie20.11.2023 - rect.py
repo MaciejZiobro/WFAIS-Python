@@ -52,9 +52,6 @@ class Rectangle:
         r4 = Rectangle(self.center().x, self.center().y, self.p2.x, self.p2.y)
         return (r1, r2, r3, r4)
     
-
-rect = Rectangle(-2,0,0,2)
-print(rect.area())
 ######################################################################
 import unittest
 
