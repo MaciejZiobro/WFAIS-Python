@@ -85,14 +85,13 @@ class Rectangle:
     def move(self, x, y):      # przesunięcie o (x, y)
         return Rectangle(self.p1.x+x, self.p1.y+y, self.p2.x+x, self.p2.y+y)
     
-    def inRect(self, x1, y1):
-        return bool(x1 >= self.p1.x and x1 <= self.p2.x and y1 >= self.p1.y and y1<= self.p2.y)
-    
     def intersection(self, other):
-        if not(self.inRect(other.p1.x, other.p1.y)):
+        try: 
+            Rectangle(max(self.p1.x, other.p1.x), max(self.p1.y, other.p1.y), min(self.p2.x, other.p2.x), min(self.p2.y, other.p2.y))
+            return Rectangle(max(self.p1.x, other.p1.x), max(self.p1.y, other.p1.y), min(self.p2.x, other.p2.x), min(self.p2.y, other.p2.y))
+        except:
             raise ValueError("Rectangles do not intersect")
-        return Rectangle(max(self.p1.x, other.p1.x), max(self.p1.y, other.p1.y), min(self.p2.x, other.p2.x), min(self.p2.y, other.p2.y))
-    
+           
     def cover(self, other):
         return Rectangle(min(self.p1.x, other.p1.x), min(self.p1.y, other.p1.y), max(self.p2.x, other.p2.x), max(self.p2.y, other.p2.y))
     
